@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#052f2a">
+<meta name="robots" content="noindex, nofollow">
+<title>Expedientes</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icono-192.png">
+<link rel="apple-touch-icon" href="icono-192.png">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="barra">
+  <div class="barra-tit" id="titulo">Expedientes</div>
+  <button class="barra-btn" id="btn-actualizar" title="Traer los datos más recientes de OneDrive" hidden>⟳</button>
+</header>
+<div id="estado-datos" class="estado-datos" hidden></div>
+<main id="vista"></main>
+<nav class="pestanas" id="pestanas" hidden>
+  <a href="#/" data-p="inicio"><span>☰</span>Qué hacer</a>
+  <a href="#/expedientes" data-p="expedientes"><span>▤</span>Expedientes</a>
+  <a href="#/clientes" data-p="clientes"><span>☺</span>Clientes</a>
+  <a href="#/mas" data-p="mas"><span>⋯</span>Más</a>
+</nav>
+<script src="config.js"></script>
+<script src="msal-browser.min.js"></script>
+<script src="sql-wasm.js"></script>
+<script src="app.js"></script>
+<script src="vistas.js"></script>
+</body>
+</html>
