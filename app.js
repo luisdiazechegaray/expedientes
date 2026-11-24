@@ -64,11 +64,23 @@ async function descargarBase() {
 }
 async function abrirDocumento(ruta) {
   if (PRUEBA) { aviso("En la prueba no se abren documentos: " + ruta.split("/").pop()); return; }
-  aviso("Abriendo…", 1500);
+  aviso("Abriendo…", 2500);
   try {
-    const item = await graph(rutaGraph(ruta) + "?select=webUrl");
+    const item = await graph(rutaGraph(ruta) + "?select=name,webUrl,file,@microsoft.graph.downloadUrl");
     if (!item) { aviso(`Este documento aún no está en tu copia de OneDrive${META.copia_documentos ? " (última copia: " + META.copia_documentos.slice(0, 10).split("-").reverse().join("/") + ")" : ""}.`, 5000); return; }
-    location.href = item.webUrl;
+    // Se descarga el archivo y lo abre el visor del teléfono. El enlace web de OneDrive
+    // lo intercepta la aplicación OneDrive de Android, que no sabe abrirlo.
+    const url = item["@microsoft.graph.downloadUrl"];
+    if (!url) { location.href = item.webUrl; return; }
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("No se ha podido descargar el documento.");
+    const tipo = (item.file && item.file.mimeType) || r.headers.get("content-type") || "application/octet-stream";
+    const blob = new Blob([await r.arrayBuffer()], { type: tipo });
+    const u = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = u; a.download = item.name || ruta.split("/").pop();
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 120000);
+    aviso("Descargado: pulsa «Abrir» en el aviso de descarga.", 6000);
   } catch (e) { aviso(e.message, 5000); }
 }
 

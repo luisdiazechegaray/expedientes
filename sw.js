@@ -1,5 +1,5 @@
 // Guarda la carcasa de la aplicación para que abra sin cobertura. Los datos van aparte (IndexedDB).
-const VERSION = "expedientes-v4";
+const VERSION = "expedientes-v5";
 const CARCASA = ["./", "index.html", "estilo.css", "config.js", "app.js", "vistas.js", "manifest.webmanifest",
   "logo-192.png", "logo-512.png", "msal-browser.min.js", "sql-wasm.js", "sql-wasm.wasm"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CARCASA))); self.skipWaiting(); });

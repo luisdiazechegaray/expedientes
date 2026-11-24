@@ -103,7 +103,7 @@ function vistaExpediente(id) {
     ${dato("Designación", e.designacion_icam ? esc(e.designacion_icam) + (e.fecha_designacion ? " · " + fecha(e.fecha_designacion) : "") : "")}
     ${dato("Cliente", [tel(e.cli_tel), mail(e.cli_email)].filter(Boolean).join("<br>"))}
     ${dato("Apertura", fecha(e.fecha_apertura))}${dato("Cierre", fecha(e.fecha_cierre))}
-    ${dato("Carpeta", esc(e.carpeta_relativa || e.ruta_carpeta))}${dato("Notas", esc(e.notas).replace(/\n/g, "<br>"))}
+    ${dato("Carpeta", esc(String(e.carpeta_relativa || e.ruta_carpeta || "").replace(/^[A-Za-z]:[\\/]+/, "")))}${dato("Notas", esc(e.notas).replace(/\n/g, "<br>"))}
   </dl></div>`;
 
   // Cronología: anotaciones y documentos juntos
