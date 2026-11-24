@@ -107,3 +107,5 @@ table.mov { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.mov td { padding: 5px 2px; border-bottom: 1px solid #eef1f0; vertical-align: top; }
 .toast { position: fixed; left: 12px; right: 12px; bottom: 76px; background: var(--tinta); color: #fff; border-radius: 8px;
   padding: 11px 14px; font-size: 14px; z-index: 30; }
+
+[hidden] { display: none !important; }
