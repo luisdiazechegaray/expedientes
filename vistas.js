@@ -206,7 +206,7 @@ function pintar() {
 }
 function portada(texto, boton) {
   titulo("Expedientes");
-  $("#vista").innerHTML = `<div class="portada"><img src="icono-192.png" alt=""><h2>Expedientes</h2><p>${texto}</p>${boton || ""}</div>`;
+  $("#vista").innerHTML = `<div class="portada"><img src="logo-192.png" alt=""><h2>Expedientes</h2><p>${texto}</p>${boton || ""}</div>`;
 }
 async function arrancar() {
   if ("serviceWorker" in navigator && !PRUEBA) navigator.serviceWorker.register("sw.js").catch(() => {});
